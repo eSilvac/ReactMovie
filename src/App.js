@@ -1,12 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
-import MovieCard from './components/MovieCard/MovieCard.js'
+import Movies from './components/Movies/Movies'
 
-function App() {
-  return (
-    <MovieCard /> 
-  );
+
+class App extends Component {
+
+  render() {
+    return (
+      <Movies  />
+    );
+  }
 }
 
 export default App;

@@ -3,14 +3,19 @@ import './MovieCard.css';
 import Col from "react-bootstrap/Col";
 
 class MovieCard extends Component {
+  constructor(props){
+    super(props)
+  }
+
   render() {
+    if (this.props.movie) {
     return (
-      <Col  className="movie">
+      <Col xs={6} className="movie mb-3">
         <div className="d-flex flex-row w-100">
-          <img src="https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg" className="h-100"/>
+          <img src="https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg" className="h-100" alt="Poster"/>
           <div className="content d-flex flex-column border flex-fill p-3 h-100">
             <div className="header d-flex flex-row align-items-end justify-content-between">
-              <h4 className="mr-2">Joker</h4>
+              <h4 className="mr-2">{this.props.movie.title}</h4>
               <div className="rating d-flex flex-row align-self-start">
                 <i className="far fa-star fa-lg align-self-center mb-1 mr-2"></i>
                 <h4 className="m-0">8.3</h4>
@@ -29,12 +34,16 @@ class MovieCard extends Component {
 
             <div className="fotter mt-auto d-flex flex-row justify-content-between">
               <button id="trailer" type="button" className="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">Trailer</button>
-              <span id="btn-favorite" className="btn-favorite align-self-center"><i class="far fa-heart"></i> Favoritos</span>
+              <span id="btn-favorite" className="btn-favorite align-self-center"><i className="far fa-heart"></i> Favoritos</span>
             </div>
           </div>
         </div>
       </Col>
     )
+      
+    } else {
+      return <p></p>
+    }
   }
 }
 
