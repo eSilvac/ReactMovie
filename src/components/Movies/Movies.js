@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Loading from './../../components/Layout/Loading'
 import Populars from './../../components/Populars/Populars'
 import Favorites from './../../components/Favorites/Favorites'
-import Container from 'react-bootstrap/Container'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 
@@ -12,7 +12,6 @@ const MoviesApi = axios.create({
 });
 
 class Movies extends Component {
-
   state = {
     data: [],
     error: null,
@@ -38,25 +37,21 @@ class Movies extends Component {
     }
   }
 
-
   render () {
     const { data, error, loading } = this.state;
 
-    if (loading) return <p>Loading....</p>;
+    if (loading) return <Loading/>;
     if (error) return <p>Upps! Algo salío mal</p>;
     return (
-      <Container className="my-5">
-        <h1 className="text-center mt-3 mb-5">Your Movies!</h1>
-	<Tabs fill defaultActiveKey="popular" id="movies-tab">
-	  <Tab eventKey="popular" title="Popular Movies" className="border border-top-0">
-           <Populars movies={data.results} />
-	  </Tab>
+      <Tabs fill defaultActiveKey="popular" id="movies-tab">
+        <Tab eventKey="popular" title="Popular Movies" className="border border-top-0">
+         <Populars movies={data.results} />
+        </Tab>
 
-	  <Tab eventKey="favorites" title="Favorites Movies" className="border border-top-0">
-	    <Favorites />
-	  </Tab>
-	</Tabs>
-      </Container>
+        <Tab eventKey="favorites" title="Favorites Movies" className="border border-top-0">
+          <Favorites />
+        </Tab>
+      </Tabs>
     );
   }
 }
