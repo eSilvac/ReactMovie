@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import './MovieCard.css';
-import Loading from './../../components/Layout/Loading'
+import Loading from './../../components/Loading/Loading'
 import Col from "react-bootstrap/Col";
 
 class MovieCard extends Component {
@@ -17,7 +17,7 @@ class MovieCard extends Component {
     });
 
     try {
-      const { data } = await axios.get("https://api.themoviedb.org/3/movie/"+ this.props.movie.id +"?api_key=3d7fd0461ae8d0f2e808c37fb41950d7");
+      const { data } = await axios.get("https://api.themoviedb.org/3/movie/"+ this.props.movieId +"?api_key=3d7fd0461ae8d0f2e808c37fb41950d7");
       this.setState({ data });
     } catch (error) {
       console.log(error);
@@ -38,7 +38,6 @@ class MovieCard extends Component {
     
     const movie = this.state.data
     if (movie) {
-      console.log(movie)
       return (
         <Col xs={6} key={movie.id} className="movie mb-3">
           <div className="d-flex flex-row w-100">

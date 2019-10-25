@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
-import './App.css';
-import Movies from './components/Movies/Movies'
-import Container from 'react-bootstrap/Container'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import './App.css';
+
+import Application from './pages/layout/Application.js'
+import NowPlaying from './pages/movies/NowPlaying.js'
+import Populars from './pages/movies/Populars.js'
+import TopRated from './pages/movies/TopRated.js'
+import Upcoming from './pages/movies/Upcoming.js'
 
 class App extends Component {
   render() {
-    return (
-      <Container className="my-5">
-        <h1 className="text-center mt-3 mb-5">Your Movies!</h1>
-        <Movies />
-      </Container>
+    return (	
+      <Router>
+	<Application />
+        <Switch>
+          <Route path="/top-rated" component={TopRated} />
+          <Route path="/upcoming" component={Upcoming} />
+          <Route path="/now-playing" component={NowPlaying} />
+          <Route path="/popular" component={Populars} />
+          <Route path="/" component={Populars} />
+        </Switch>
+      </Router>	
+
     );
   }
 }
